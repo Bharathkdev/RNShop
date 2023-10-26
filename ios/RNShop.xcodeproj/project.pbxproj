@@ -21,6 +21,8 @@
 		8703CBC9A1C94F37A912DF4E /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56000CF946304901BF969D0A /* Nunito-Light.ttf */; };
 		A07490038FFA40A8B70DA949 /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94F51FBB40424825841FA19A /* Nunito-ExtraLight.ttf */; };
 		C46B746660BD4BE9BEBFB1F4 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9D24E478FC4FA397A4F140 /* Nunito-Medium.ttf */; };
+		DA935C292AE9712800720974 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = DA935C282AE9712800720974 /* splash.json */; };
+		DA935C2B2AE9A57D00720974 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA935C2A2AE9A57D00720974 /* Dynamic.swift */; };
 		E7631BBC414E40B69A4C51D4 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D8EDC6620374536A620262D /* Nunito-Bold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +62,10 @@
 		986C2CDA2AE7D62600A9C304 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
 		9D8EDC6620374536A620262D /* Nunito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Bold.ttf"; path = "../assets/fonts/Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		B1ED57CEB54849A7A4C04D19 /* Nunito-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Black.ttf"; path = "../assets/fonts/Nunito-Black.ttf"; sourceTree = "<group>"; };
+		DA935C242AE96B6700720974 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		DA935C282AE9712800720974 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../../../Downloads/splash.json; sourceTree = "<group>"; };
+		DA935C2A2AE9A57D00720974 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		DA935C2C2AE9A5A300720974 /* RNShop-bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNShop-bridging-header.h"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EF9D24E478FC4FA397A4F140 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Medium.ttf"; path = "../assets/fonts/Nunito-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +110,7 @@
 		13B07FAE1A68108700A75B9A /* RNShop */ = {
 			isa = PBXGroup;
 			children = (
+				DA935C282AE9712800720974 /* splash.json */,
 				986C2CD82AE7D59300A9C304 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -111,6 +118,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				DA935C2A2AE9A57D00720974 /* Dynamic.swift */,
+				DA935C2C2AE9A5A300720974 /* RNShop-bridging-header.h */,
 			);
 			name = RNShop;
 			sourceTree = "<group>";
@@ -162,6 +171,7 @@
 			children = (
 				986C2CDA2AE7D62600A9C304 /* Ionicons.ttf */,
 				986C2CD92AE7D61500A9C304 /* AntDesign.ttf */,
+				DA935C242AE96B6700720974 /* MaterialIcons.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -251,7 +261,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -290,6 +300,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4CF074CFB3384452A44BC187 /* Nunito-Black.ttf in Resources */,
 				E7631BBC414E40B69A4C51D4 /* Nunito-Bold.ttf in Resources */,
+				DA935C292AE9712800720974 /* splash.json in Resources */,
 				4CBD74B9B0454215AA212230 /* Nunito-ExtraBold.ttf in Resources */,
 				A07490038FFA40A8B70DA949 /* Nunito-ExtraLight.ttf in Resources */,
 				8703CBC9A1C94F37A912DF4E /* Nunito-Light.ttf in Resources */,
@@ -464,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA935C2B2AE9A57D00720974 /* Dynamic.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -484,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-RNShop-RNShopTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -511,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-RNShop-RNShopTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = RNShopTests/Info.plist;
@@ -538,7 +552,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FN9FAVB8ZS;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YU32Q4FRCB;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RNShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -553,6 +568,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNShop;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNShop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -566,7 +582,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FN9FAVB8ZS;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YU32Q4FRCB;
 				INFOPLIST_FILE = RNShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -580,6 +597,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNShop;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNShop-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
