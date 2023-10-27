@@ -20,10 +20,17 @@ const checkIsNull = (value: string | null): boolean => {
   return isNull(value);
 };
 
+const getItemLayout = (itemHeight: number) => (_: any, index: number) => ({
+  length: itemHeight,
+  offset: itemHeight * index,
+  index,
+});
+
 export default {
   capitalizeFirstLetter,
   truncateWord,
   convertToString,
   addEuroSymbol,
   checkIsNull,
+  getItemLayout,
 };
