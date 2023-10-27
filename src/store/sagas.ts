@@ -1,5 +1,5 @@
 import {Alert} from 'react-native';
-import {call, put, debounce, takeLatest} from 'redux-saga/effects';
+import {call, put, debounce, takeLatest, select} from 'redux-saga/effects';
 import {
   fetchCategoriesListAction,
   fetchProductsByCategoryAction,
@@ -19,25 +19,35 @@ import {
   setCategoriesAction,
   setProductsByCategoryAction,
   setLoadingStatusAction,
-  ProductTypes,
+  setTotalProductsAction,
 } from './reducer';
 import {strings} from '../common/strings';
-
-export interface ProductsTypes {
-  products: ProductTypes[];
-}
+import {ProductListTypes} from '../types/ReducerTypes';
 
 const initialLoadingStatus = {
   home: false,
   search: false,
 };
 
-function* fetchProductsListSaga() {
+function* fetchProductsListSaga(action: {
+  payload: {limit: number; skip: number};
+}): Generator<any, void, ProductListTypes> {
   try {
     yield put(setLoadingStatusAction({...initialLoadingStatus, home: true}));
-    const data: ProductsTypes = yield call(fetchProductsListAPI);
+    const limit = action.payload.limit;
+    const existingProducts = yield select(state => state.product.products);
+    const page = Math.ceil(existingProducts.length / limit) + 1;
 
-    yield put(setProductsAction(data.products));
+    const offset = (page - 1) * limit;
+    const data: ProductListTypes = yield call(fetchProductsListAPI, {
+      limit,
+      offset,
+    });
+
+    const updatedProducts = existingProducts.concat(data.products);
+
+    yield put(setProductsAction(updatedProducts));
+    yield put(setTotalProductsAction(data.total));
   } catch (error: any) {
     const errorMessage = strings.ErrorHandling.productListError;
     console.error('Error in fetchProductsListSaga:', error);
@@ -50,9 +60,12 @@ function* fetchProductsListSaga() {
 function* searchProductsSaga(action: {payload: string}) {
   try {
     yield put(setLoadingStatusAction({...initialLoadingStatus, search: true}));
-    const data: ProductTypes[] = yield call(searchProductsAPI, action.payload);
+    const data: ProductListTypes = yield call(
+      searchProductsAPI,
+      action.payload,
+    );
 
-    yield put(setSearchResultsAction(data));
+    yield put(setSearchResultsAction(data.products));
   } catch (error: any) {
     const errorMessage = strings.ErrorHandling.searchProductError;
     console.error('Error in searchProductsSaga:', error);
@@ -64,7 +77,7 @@ function* searchProductsSaga(action: {payload: string}) {
 
 function* fetchCategoriesListSaga() {
   try {
-    yield put(setLoadingStatusAction({...initialLoadingStatus, home: true}));
+    yield put(setLoadingStatusAction({...initialLoadingStatus, search: true}));
     const data: string[] = yield call(fetchCategoriesListAPI);
 
     yield put(setCategoriesAction(data));
@@ -73,25 +86,25 @@ function* fetchCategoriesListSaga() {
     console.error('Error in fetchCategoriesListSaga:', error);
     Alert.alert('Alert', errorMessage);
   } finally {
-    yield put(setLoadingStatusAction({...initialLoadingStatus, home: false}));
+    yield put(setLoadingStatusAction({...initialLoadingStatus, search: false}));
   }
 }
 
 function* fetchProductsByCategorySaga(action: {payload: string}) {
   try {
-    yield put(setLoadingStatusAction({...initialLoadingStatus, home: true}));
-    const data: ProductTypes[] = yield call(
+    yield put(setLoadingStatusAction({...initialLoadingStatus, search: true}));
+    const data: ProductListTypes = yield call(
       fetchProductsByCategoryAPI,
       action.payload,
     );
 
-    yield put(setProductsByCategoryAction(data));
+    yield put(setProductsByCategoryAction(data.products));
   } catch (error: any) {
     const errorMessage = strings.ErrorHandling.productListError;
     console.error('Error in fetchProductsByCategorySaga:', error);
     Alert.alert('Alert', errorMessage);
   } finally {
-    yield put(setLoadingStatusAction({...initialLoadingStatus, home: false}));
+    yield put(setLoadingStatusAction({...initialLoadingStatus, search: false}));
   }
 }
 

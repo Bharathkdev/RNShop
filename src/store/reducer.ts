@@ -1,31 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-export interface ProductTypes {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  rating: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-  discountPercentage: number;
-  stock: number;
-}
-
-interface LoadingStatusTypes {
-  home: boolean;
-  search: boolean;
-}
-
-export interface ProductSliceStateTypes {
-  products: ProductTypes[];
-  searchResults: ProductTypes[];
-  categories: string[];
-  productsByCategory: ProductTypes[];
-  loadingStatus: LoadingStatusTypes;
-}
+import {
+  ProductSliceStateTypes,
+  ProductTypes,
+  LoadingStatusTypes,
+} from '../types/ReducerTypes';
 
 const initialState: ProductSliceStateTypes = {
   products: [],
@@ -36,6 +14,7 @@ const initialState: ProductSliceStateTypes = {
     home: false,
     search: false,
   },
+  totalProducts: 0,
 };
 
 const productSlice = createSlice({
@@ -57,6 +36,9 @@ const productSlice = createSlice({
     ) => {
       state.productsByCategory = action.payload;
     },
+    setTotalProductsAction: (state, action: PayloadAction<number>) => {
+      state.totalProducts = action.payload;
+    },
     setLoadingStatusAction: (
       state,
       action: PayloadAction<LoadingStatusTypes>,
@@ -71,6 +53,8 @@ export const {
   setSearchResultsAction,
   setCategoriesAction,
   setProductsByCategoryAction,
+  setTotalProductsAction,
   setLoadingStatusAction,
 } = productSlice.actions;
+
 export default productSlice.reducer;
