@@ -1,4 +1,4 @@
-import {ProductListTypes} from '../types/ReducerTypes';
+import {ProductListTypes} from '../types/commonTypes';
 import {mainAxios} from './services';
 
 export const fetchProductsListAPI = async ({

@@ -3,7 +3,7 @@ import {
   ProductSliceStateTypes,
   ProductTypes,
   LoadingStatusTypes,
-} from '../types/ReducerTypes';
+} from '../types/commonTypes';
 
 const initialState: ProductSliceStateTypes = {
   products: [],

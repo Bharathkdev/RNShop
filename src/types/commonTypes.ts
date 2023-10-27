@@ -32,3 +32,7 @@ export interface ProductListTypes extends Array<ProductTypes> {
   limit: number;
   skip: number;
 }
+
+export interface childrenTypes {
+  children: React.ReactNode;
+}

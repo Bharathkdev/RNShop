@@ -22,7 +22,7 @@ import {
   setTotalProductsAction,
 } from './reducer';
 import {strings} from '../common/strings';
-import {ProductListTypes} from '../types/ReducerTypes';
+import {ProductListTypes} from '../types/commonTypes';
 
 const initialLoadingStatus = {
   home: false,
@@ -34,6 +34,7 @@ function* fetchProductsListSaga(action: {
 }): Generator<any, void, ProductListTypes> {
   try {
     yield put(setLoadingStatusAction({...initialLoadingStatus, home: true}));
+    // Handled pagination with limit and offset
     const limit = action.payload.limit;
     const existingProducts = yield select(state => state.product.products);
     const page = Math.ceil(existingProducts.length / limit) + 1;
@@ -44,12 +45,17 @@ function* fetchProductsListSaga(action: {
       offset,
     });
 
+    // Combine the existing products with the newly fetched products
+    // to keep the store updated.
     const updatedProducts = existingProducts.concat(data.products);
 
     yield put(setProductsAction(updatedProducts));
     yield put(setTotalProductsAction(data.total));
   } catch (error: any) {
     const errorMessage = strings.ErrorHandling.productListError;
+    // Log the error message for debugging purposes. In a production environment,
+    // specialized error tracking tools like Sentry can be used to gather more
+    // detailed information about errors.
     console.error('Error in fetchProductsListSaga:', error);
     Alert.alert('Alert', errorMessage);
   } finally {
@@ -82,7 +88,7 @@ function* fetchCategoriesListSaga() {
 
     yield put(setCategoriesAction(data));
   } catch (error: any) {
-    const errorMessage = strings.ErrorHandling.productListError;
+    const errorMessage = strings.ErrorHandling.categoriesListError;
     console.error('Error in fetchCategoriesListSaga:', error);
     Alert.alert('Alert', errorMessage);
   } finally {
@@ -100,7 +106,7 @@ function* fetchProductsByCategorySaga(action: {payload: string}) {
 
     yield put(setProductsByCategoryAction(data.products));
   } catch (error: any) {
-    const errorMessage = strings.ErrorHandling.productListError;
+    const errorMessage = strings.ErrorHandling.productListByCategoryError;
     console.error('Error in fetchProductsByCategorySaga:', error);
     Alert.alert('Alert', errorMessage);
   } finally {

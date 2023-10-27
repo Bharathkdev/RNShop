@@ -38,6 +38,7 @@ const SearchStack: React.FC = () => {
   );
 };
 
+//Pick<T, K>: Useful when you want to create a type with only a subset of properties from another type.
 export type TabBarProps = Pick<
   BottomTabBarProps,
   'state' | 'descriptors' | 'navigation'
