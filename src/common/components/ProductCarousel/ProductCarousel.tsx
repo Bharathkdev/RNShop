@@ -40,7 +40,7 @@ export const ProductCarousel: React.FC<ProductCarouselTypes> = ({
           }}
           style={[
             styles.imageStyle,
-            {height: isDetailsScreen ? '100%' : moderateScale(335)},
+            {height: isDetailsScreen ? '100%' : moderateScale(328)},
           ]}
           resizeMode={resizeMode}
           onLoadEnd={handleImageLoad} // Show loader until image is loaded
