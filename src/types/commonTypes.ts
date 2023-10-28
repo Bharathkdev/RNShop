@@ -1,3 +1,5 @@
+import {NavigationProp} from '@react-navigation/native';
+
 export interface ProductTypes {
   id: string;
   title: string;
@@ -8,7 +10,6 @@ export interface ProductTypes {
   category: string;
   thumbnail: string;
   images: string[];
-  discountPercentage: number;
   stock: number;
 }
 
@@ -35,4 +36,8 @@ export interface ProductListTypes extends Array<ProductTypes> {
 
 export interface childrenTypes {
   children: React.ReactNode;
+}
+
+export interface navigationProps {
+  navigation: NavigationProp<any, any>;
 }

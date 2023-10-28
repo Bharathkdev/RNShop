@@ -13,7 +13,6 @@ import {Gradient} from '../../common/components/LinearGradient';
 import {HomeLoader} from '../../common/components/HomeLoader';
 import {LoadingIndicator} from '../../common/components/LoadingIndicator';
 import {ProductCarousel} from '../../common/components/ProductCarousel/ProductCarousel';
-
 import {colors} from '../../common/theme/colors';
 import {strings} from '../../common/strings';
 import Utility from '../../common/Utility';
@@ -40,7 +39,7 @@ export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
 
   const dispatch = useDispatch();
 
-  // Products List, loading status and total products retrieved from the Redux store
+  // Retrieve Products List, loading status and total products from the Redux store
   const {products, loadingStatus, totalProducts} = useSelector(
     (state: {product: ProductSliceStateTypes}) => state.product,
   );
@@ -161,7 +160,9 @@ export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
           numColumns={2}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={listHeader}
-          keyExtractor={(item: ProductTypes, index: number) => `${index}`}
+          keyExtractor={(item: ProductTypes, index: number) =>
+            Utility.convertToString(index)
+          }
           refreshControl={
             <RefreshControl
               refreshing={isRefreshing}

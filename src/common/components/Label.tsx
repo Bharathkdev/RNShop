@@ -27,7 +27,7 @@ export const Label: React.FC<labelPropTypes> = ({
   ellipsis,
   capitalizeFirstLetter,
 }) => {
-  let updatedTitle = title;
+  let updatedTitle: string = title;
 
   //Check if first letter of the text need to be capitalized
   if (capitalizeFirstLetter) {
