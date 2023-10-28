@@ -1,10 +1,10 @@
 import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
-import {colors} from '../../common/theme/colors';
 import {ImageStyle} from 'react-native-fast-image';
+import {colors} from '../../common/theme/colors';
 import {commonTheme} from '../../common/theme';
 
-interface stylePropTypes {
+interface StylePropTypes {
   container: ViewStyle;
   title: TextStyle;
   categoryContainer: ViewStyle;
@@ -15,7 +15,7 @@ interface stylePropTypes {
   footer: ViewStyle;
 }
 
-export const styles = StyleSheet.create<stylePropTypes>({
+export const styles = StyleSheet.create<StylePropTypes>({
   container: {
     padding: moderateScale(16),
   },

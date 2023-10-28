@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, View, ViewStyle, ActivityIndicator} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
 
-interface stylePropTypes {
+interface StylePropTypes {
   viewStyle: ViewStyle;
 }
 
-const styles = StyleSheet.create<stylePropTypes>({
+const styles = StyleSheet.create<StylePropTypes>({
   viewStyle: {
     position: 'absolute',
     zIndex: moderateScale(100),

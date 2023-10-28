@@ -1,12 +1,14 @@
 import React, {useEffect, useRef} from 'react';
 import {View, Animated, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+
 import {colors} from '../common/theme/colors';
 import {Label} from '../common/components/Label';
-import {TabBarProps} from './index';
+import {TabBarPropTypes} from './index';
 import {styles} from './TabBar.style';
 
-export const TabBar: React.FC<TabBarProps> = ({
+// Animation effect when tab is switched
+export const TabBar: React.FC<TabBarPropTypes> = ({
   state,
   descriptors,
   navigation,

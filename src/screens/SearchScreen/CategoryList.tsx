@@ -12,7 +12,7 @@ import Utility from '../../common/Utility';
 import {styles} from './CategoryList.style';
 
 // Defined a mapping of category names to their associated local images.
-const categoryWithImages = {
+const categoryImages = {
   'smartphones': require('../../../assets/images/smartphones.png'),
   'laptops': require('../../../assets/images/laptops.png'),
   'fragrances': require('../../../assets/images/fragrances.png'),
@@ -36,20 +36,21 @@ const categoryWithImages = {
 };
 
 // Define a type 'CategoryImageKeys' that represents the valid keys that can be
-// used to index the 'categoryWithImages' object.
-type CategoryImageKeys = keyof typeof categoryWithImages;
+// used to index the 'categoryImages' object.
+type CategoryImageKeys = keyof typeof categoryImages;
 
-interface CategoryListProps {
+interface CategoryListPropTypes {
   onSelectCategory: (category: CategoryImageKeys) => void;
 }
 
-const CategoryList: React.FC<CategoryListProps> = ({onSelectCategory}) => {
+// Retrieve Categories List from the Redux store
+const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}) => {
   const [showMore, setShowMore] = React.useState<boolean>(false);
 
-  const dispatch = useDispatch();
   const categories = useSelector(
     (state: {product: ProductSliceStateTypes}) => state.product?.categories,
   );
+  const dispatch = useDispatch();
 
   // Fetch the categories list when the component mounts
   useEffect(() => {
@@ -61,9 +62,6 @@ const CategoryList: React.FC<CategoryListProps> = ({onSelectCategory}) => {
     setShowMore(prevShowMore => !prevShowMore);
   };
 
-  // Determine the displayed categories based on the "showMore" state.
-  const displayedCategories = showMore ? categories : categories.slice(0, 6);
-
   const renderItem = ({item}: {item: CategoryImageKeys}) => (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -72,7 +70,7 @@ const CategoryList: React.FC<CategoryListProps> = ({onSelectCategory}) => {
         onSelectCategory(item);
       }}>
       <FastImage
-        source={categoryWithImages[item]}
+        source={categoryImages[item]}
         style={styles.imageStyle}
         resizeMode={FastImage.resizeMode.contain}
       />
@@ -101,6 +99,9 @@ const CategoryList: React.FC<CategoryListProps> = ({onSelectCategory}) => {
       )}
     </View>
   );
+
+  // Determine the displayed categories based on the "showMore" state.
+  const displayedCategories = showMore ? categories : categories.slice(0, 6);
 
   return (
     <View style={styles.container}>

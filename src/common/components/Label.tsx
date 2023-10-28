@@ -3,25 +3,25 @@ import {StyleSheet, Text, TextStyle} from 'react-native';
 import {commonTheme} from '../theme/index';
 import Utility from '../Utility';
 
-interface stylePropTypes {
+interface StylePropTypes {
   labelStyle: TextStyle;
 }
 
-const styles = StyleSheet.create<stylePropTypes>({
+const styles = StyleSheet.create<StylePropTypes>({
   labelStyle: {
     fontSize: commonTheme.fontSizes.m,
     fontFamily: commonTheme.fonts.bold,
   },
 });
 
-interface labelPropTypes {
+interface LabelPropTypes {
   title: string;
   labelStyle?: TextStyle;
   ellipsis?: boolean;
   capitalizeFirstLetter?: boolean;
 }
 
-export const Label: React.FC<labelPropTypes> = ({
+export const Label: React.FC<LabelPropTypes> = ({
   title,
   labelStyle,
   ellipsis,

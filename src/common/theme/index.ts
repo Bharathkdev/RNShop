@@ -15,17 +15,18 @@ type FontSizeName =
   | 'xl5';
 
 // Record<K, T>: Useful when you want to create a dictionary or map-like type of same data type.
-type FontSizes = Record<FontSizeName, number>;
+type FontSizeTypes = Record<FontSizeName, number>;
 
 type FontName = 'light' | 'regular' | 'medium' | 'bold';
 
-type Fonts = Record<FontName, string>;
+type FontTypes = Record<FontName, string>;
 
 interface CommonThemeTypes {
-  fonts: Fonts;
-  fontSizes: FontSizes;
+  fonts: FontTypes;
+  fontSizes: FontSizeTypes;
 }
 
+// Common theme object with font families and font sizes
 export const commonTheme: CommonThemeTypes = {
   fonts: {
     light: 'Nunito-Light',

@@ -3,7 +3,7 @@ import {moderateScale} from 'react-native-size-matters';
 import {colors} from '../common/theme/colors';
 import {commonTheme} from '../common/theme';
 
-interface stylePropTypes {
+interface StylePropTypes {
   tabBarContainer: ViewStyle;
   tabItem: ViewStyle;
   tabItemContainer: ViewStyle;
@@ -11,7 +11,7 @@ interface stylePropTypes {
   animatedTab: ViewStyle;
 }
 
-export const styles = StyleSheet.create<stylePropTypes>({
+export const styles = StyleSheet.create<StylePropTypes>({
   tabBarContainer: {
     flexDirection: 'row',
     backgroundColor: colors.dark,

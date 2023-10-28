@@ -13,13 +13,13 @@ if (fullWidth <= 0) {
   fullWidth = moderateScale(100);
 }
 
-interface stylePropTypes {
+interface StylePropTypes {
   mainViewStyle: ViewStyle;
   innerViewStyle: ViewStyle;
   headerViewStyle: ViewStyle;
 }
 
-const styles = StyleSheet.create<stylePropTypes>({
+const styles = StyleSheet.create<StylePropTypes>({
   mainViewStyle: {
     backgroundColor: colors.dark,
   },
@@ -66,10 +66,11 @@ export const HomeLoader: React.FC = () => (
         backgroundColor={colors.primary}
         foregroundColor={colors.light}>
         {createRect({
-          x: Platform.OS === 'ios' ? 15 : 17,
+          x: 0,
           y: '25',
-          width:
-            Platform.OS === 'ios' ? moderateScale(355) : moderateScale(340),
+          rx: 0,
+          ry: 0,
+          width: windowWidth,
           height: '300',
         })}
       </ContentLoader>

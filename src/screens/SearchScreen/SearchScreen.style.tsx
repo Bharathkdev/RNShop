@@ -3,7 +3,7 @@ import {moderateScale} from 'react-native-size-matters';
 import {colors} from '../../common/theme/colors';
 import {commonTheme} from '../../common/theme';
 
-interface stylePropTypes {
+interface StylePropTypes {
   searchBarContainer: ViewStyle;
   searchBarInput: TextStyle;
   searchBarCloseIcon: ViewStyle;
@@ -14,7 +14,7 @@ interface stylePropTypes {
   listFooter: ViewStyle;
 }
 
-export const styles = StyleSheet.create<stylePropTypes>({
+export const styles = StyleSheet.create<StylePropTypes>({
   searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',

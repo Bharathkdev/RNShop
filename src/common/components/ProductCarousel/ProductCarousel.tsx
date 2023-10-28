@@ -2,9 +2,10 @@ import React, {useRef, useState} from 'react';
 import {Dimensions, View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {moderateScale} from 'react-native-size-matters';
+import FastImage from 'react-native-fast-image';
+
 import {LoadingIndicator} from '../LoadingIndicator';
 import {colors} from '../../theme/colors';
-import FastImage from 'react-native-fast-image';
 import {styles} from './ProductCarousel.style';
 
 interface ProductCarouselTypes {
@@ -13,19 +14,23 @@ interface ProductCarouselTypes {
   isDetailsScreen: boolean;
 }
 
-export const ProductCarousel: React.FC<ProductCarouselTypes> = props => {
-  const carouselRef = useRef<Carousel<string> | null>(null);
+export const ProductCarousel: React.FC<ProductCarouselTypes> = ({
+  carouselImages,
+  resizeMode,
+  isDetailsScreen,
+}) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeSlide, setActiveSlide] = useState<number>(0);
-  const width = Dimensions.get('window').width;
-  const {carouselImages, resizeMode, isDetailsScreen} = props;
+
+  const carouselRef = useRef<Carousel<string> | null>(null);
+  const windowWidth = Dimensions.get('window').width;
 
   // Hide loader when the carousel image is loaded
   const handleImageLoad = () => {
     setIsLoading(false);
   };
 
-  const carouselRenderItem = ({item}: {item: string}) => {
+  const renderCarouselItem = ({item}: {item: string}) => {
     return (
       <View style={styles.carouselView}>
         <FastImage
@@ -53,9 +58,9 @@ export const ProductCarousel: React.FC<ProductCarouselTypes> = props => {
         }}
         layout={'default'}
         data={carouselImages}
-        renderItem={carouselRenderItem}
-        sliderWidth={width}
-        itemWidth={width}
+        renderItem={renderCarouselItem}
+        sliderWidth={windowWidth}
+        itemWidth={windowWidth}
         autoplay={isDetailsScreen ? false : true}
         autoplayInterval={3000}
         loop={true}
@@ -66,7 +71,7 @@ export const ProductCarousel: React.FC<ProductCarouselTypes> = props => {
         enableMomentum={true}
         removeClippedSubviews={false}
         decelerationRate={0.9}
-        height={isDetailsScreen ? width / 1.5 : width / 2}
+        height={isDetailsScreen ? windowWidth / 1.5 : windowWidth / 2}
         lockScrollWhileSnapping={true}
         loopClonesPerSide={carouselImages.length}
       />

@@ -1,10 +1,10 @@
 import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
-import {colors} from '../../common/theme/colors';
-import {moderateScale} from 'react-native-size-matters';
 import {ImageStyle} from 'react-native-fast-image';
+import {moderateScale} from 'react-native-size-matters';
+import {colors} from '../../common/theme/colors';
 import {commonTheme} from '../../common/theme';
 
-interface stylePropTypes {
+interface StylePropTypes {
   container: ViewStyle;
   logoImageStyle: ImageStyle;
   logoStyle: ViewStyle;
@@ -16,7 +16,7 @@ interface stylePropTypes {
   loadingIndicator: ViewStyle;
 }
 
-export const styles = StyleSheet.create<stylePropTypes>({
+export const styles = StyleSheet.create<StylePropTypes>({
   container: {
     flex: 1,
     alignItems: 'center',

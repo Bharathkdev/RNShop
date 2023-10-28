@@ -1,20 +1,20 @@
 import React from 'react';
+import {StyleSheet, ViewStyle} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../theme/colors';
-import {StyleSheet, ViewStyle} from 'react-native';
-import {childrenTypes} from '../../types/commonTypes';
+import {ChildrenTypes} from '../../types/commonTypes';
 
-interface stylePropTypes {
+interface StylePropTypes {
   container: ViewStyle;
 }
 
-const styles = StyleSheet.create<stylePropTypes>({
+const styles = StyleSheet.create<StylePropTypes>({
   container: {
     flex: 1,
   },
 });
 
-export const Gradient: React.FC<childrenTypes> = ({children}) => {
+export const Gradient: React.FC<ChildrenTypes> = ({children}) => {
   return (
     <LinearGradient
       colors={[colors.primary, colors.dark]}

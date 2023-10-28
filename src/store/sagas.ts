@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import {call, put, debounce, takeLatest, select} from 'redux-saga/effects';
+
 import {
   fetchCategoriesListAction,
   fetchProductsByCategoryAction,
@@ -24,7 +25,7 @@ import {
 import {strings} from '../common/strings';
 import {ProductListTypes} from '../types/commonTypes';
 
-const initialLoadingStatus = {
+const initialLoadingStatus: {home: boolean; search: boolean} = {
   home: false,
   search: false,
 };

@@ -27,6 +27,10 @@ export interface ProductSliceStateTypes {
   totalProducts: number;
 }
 
+/* An interface that extends another interface using the 'extends' keyword.
+In this case, it extends 'Array<ProductTypes>', which means it represents an array
+with elements of the 'ProductTypes' type and also includes 'products', 'total', 'limit',
+and 'skip' */
 export interface ProductListTypes extends Array<ProductTypes> {
   products: ProductTypes[];
   total: number;
@@ -34,10 +38,17 @@ export interface ProductListTypes extends Array<ProductTypes> {
   skip: number;
 }
 
-export interface childrenTypes {
+export interface ChildrenTypes {
   children: React.ReactNode;
 }
 
-export interface navigationProps {
+export interface NavigationTypes {
   navigation: NavigationProp<any, any>;
+}
+
+//Exclude<T, U>:  Useful when you want to exclude specific values from another type.
+export interface RouteTypes {
+  route: {
+    params: Exclude<ProductTypes, 'id'>;
+  };
 }

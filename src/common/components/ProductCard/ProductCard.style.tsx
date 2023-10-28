@@ -1,9 +1,9 @@
 import {StyleSheet, ViewStyle} from 'react-native';
 import {moderateScale} from 'react-native-size-matters';
-import {colors} from '../../theme/colors';
 import {ImageStyle} from 'react-native-fast-image';
+import {colors} from '../../theme/colors';
 
-interface stylePropTypes {
+interface StylePropTypes {
   cardStyle: ViewStyle;
   cardShadowStyle: ViewStyle;
   imageStyle: ImageStyle;
@@ -11,7 +11,7 @@ interface stylePropTypes {
   infoText: ViewStyle;
 }
 
-export const styles = StyleSheet.create<stylePropTypes>({
+export const styles = StyleSheet.create<StylePropTypes>({
   cardStyle: {
     width: '46%',
     marginLeft: moderateScale(10.5),

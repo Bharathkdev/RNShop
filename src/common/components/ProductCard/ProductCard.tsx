@@ -5,7 +5,7 @@ import {Label} from '../Label';
 import Utility from '../../Utility';
 import {styles} from './ProductCard.style';
 
-interface cardPropTypes {
+interface ProductCardTypes {
   imageUri: string;
   productName: string;
   productPrice: number;
@@ -13,7 +13,7 @@ interface cardPropTypes {
   cardStyle?: ViewStyle;
 }
 
-export const ProductCard: React.FC<cardPropTypes> = ({
+export const ProductCard: React.FC<ProductCardTypes> = ({
   imageUri,
   productName,
   productPrice,

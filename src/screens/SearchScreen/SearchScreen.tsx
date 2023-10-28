@@ -25,23 +25,23 @@ import {
 import {
   ProductSliceStateTypes,
   ProductTypes,
-  navigationProps,
+  NavigationTypes,
 } from '../../types/commonTypes';
 import Utility from '../../common/Utility';
 import {styles} from './SearchScreen.style';
 
-export const SearchScreen: React.FC<navigationProps> = ({navigation}) => {
+export const SearchScreen: React.FC<NavigationTypes> = ({navigation}) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [results, setResults] = useState<ProductTypes[]>([]);
   const itemHeight = moderateScale(250); // Height of a product card
 
-  const dispatch = useDispatch();
   // Retrieve search results, loading status, and products by category from the Redux store
   const {searchResults, productsByCategory, loadingStatus} = useSelector(
     (state: {product: ProductSliceStateTypes}) => state.product,
   );
+  const dispatch = useDispatch();
 
   //To filter products by category or search terms
   const filterProductsByCategory = useCallback(() => {
@@ -83,7 +83,7 @@ export const SearchScreen: React.FC<navigationProps> = ({navigation}) => {
 
   const clearSearch = () => setSearchTerm('');
 
-  const onSearchFocus = () => setIsSearchFocused(true);
+  const handleSearchFocus = () => setIsSearchFocused(true);
 
   const onBackPress = () => {
     setIsSearchFocused(false);
@@ -107,7 +107,7 @@ export const SearchScreen: React.FC<navigationProps> = ({navigation}) => {
   };
 
   // Determine the title for search results
-  const resultsTitle = () => {
+  const handleResultsTitle = () => {
     if (selectedCategory) {
       return selectedCategory;
     } else if (results && !searchTerm) {
@@ -130,6 +130,13 @@ export const SearchScreen: React.FC<navigationProps> = ({navigation}) => {
     );
   };
 
+  const handleChangeText = (text: string) => {
+    if (selectedCategory) {
+      setSelectedCategory(null);
+    }
+    setSearchTerm(text);
+  };
+
   return (
     <Gradient>
       <LoadingIndicator loading={loadingStatus.search} color={colors.base} />
@@ -142,14 +149,9 @@ export const SearchScreen: React.FC<navigationProps> = ({navigation}) => {
           style={styles.searchBarInput}
           value={searchTerm}
           selectionColor={colors.base}
-          onChangeText={(text: string) => {
-            if (selectedCategory) {
-              setSelectedCategory(null);
-            }
-            setSearchTerm(text);
-          }}
+          onChangeText={handleChangeText}
           placeholder={strings.SearchScreen.placeHolder}
-          onFocus={onSearchFocus}
+          onFocus={handleSearchFocus}
         />
 
         {searchTerm
@@ -183,7 +185,7 @@ export const SearchScreen: React.FC<navigationProps> = ({navigation}) => {
           getItemLayout={Utility.getItemLayout(itemHeight)}
           ListHeaderComponent={
             <Label
-              title={resultsTitle()}
+              title={handleResultsTitle()}
               labelStyle={styles.resultsHeaderStyle}
               capitalizeFirstLetter={true}
             />

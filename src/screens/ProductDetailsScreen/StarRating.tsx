@@ -4,45 +4,45 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {moderateScale} from 'react-native-size-matters';
 import {colors} from '../../common/theme/colors';
 
-interface stylePropTypes {
+interface StylePropTypes {
   container: ViewStyle;
 }
 
-const styles = StyleSheet.create<stylePropTypes>({
+const styles = StyleSheet.create<StylePropTypes>({
   container: {
     flexDirection: 'row',
   },
 });
 
-const Icon = (key: string, iconName: string) => {
-  return (
-    <Ionicons
-      key={key}
-      name={iconName}
-      size={moderateScale(15)}
-      color={colors.base}
-    />
-  );
-};
-
-interface StarRatingProps {
+interface StarRatingPropTypes {
   rating: number;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({rating}) => {
+const StarRating: React.FC<StarRatingPropTypes> = ({rating}) => {
   // Calculate the number of full stars and check for a half star
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 2 !== 0;
+
+  const renderIcon = (key: string, iconName: string) => {
+    return (
+      <Ionicons
+        key={key}
+        name={iconName}
+        size={moderateScale(15)}
+        color={colors.base}
+      />
+    );
+  };
 
   // Function to render individual stars
   const renderStar = (index: number) => {
     const key = `star-${index}`;
     if (index < fullStars) {
-      return Icon(key, 'star');
+      return renderIcon(key, 'star');
     } else if (hasHalfStar && index === fullStars) {
-      return Icon(key, 'star-half');
+      return renderIcon(key, 'star-half');
     } else {
-      return Icon(key, 'star-outline');
+      return renderIcon(key, 'star-outline');
     }
   };
 

@@ -7,14 +7,14 @@ import {
   ViewStyle,
 } from 'react-native';
 import {colors} from '../theme/colors';
-import {childrenTypes} from '../../types/commonTypes';
+import {ChildrenTypes} from '../../types/commonTypes';
 
-interface stylePropTypes {
+interface StylePropTypes {
   topSafeAreaStyle: ViewStyle;
   bottomSafeAreaStyle: ViewStyle;
 }
 
-const styles = StyleSheet.create<stylePropTypes>({
+const styles = StyleSheet.create<StylePropTypes>({
   topSafeAreaStyle: {
     flex: 0,
     backgroundColor: colors.primary,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create<stylePropTypes>({
   },
 });
 
-export const SafeArea: React.FC<childrenTypes> = ({children}) => {
+export const SafeArea: React.FC<ChildrenTypes> = ({children}) => {
   return (
     <>
       {Platform.OS === 'ios' ? (

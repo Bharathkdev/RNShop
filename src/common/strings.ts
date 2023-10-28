@@ -1,3 +1,4 @@
+// All hardcoded values used in the application
 export const strings = {
   TabBar: {
     homeTitle: 'Home',

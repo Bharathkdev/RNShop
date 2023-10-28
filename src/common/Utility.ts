@@ -1,24 +1,16 @@
 import {isNull} from 'lodash';
 
-const capitalizeFirstLetter = (word: string): string => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
+const capitalizeFirstLetter = (word: string): string =>
+  word.charAt(0).toUpperCase() + word.slice(1);
 
-const truncateWord = (title: string): string => {
-  return title.length > 18 ? title.substring(0, 18) + '...' : title;
-};
+const truncateWord = (title: string): string =>
+  title.length > 18 ? title.substring(0, 18) + '...' : title;
 
-const convertToString = (value: number): string => {
-  return value.toString();
-};
+const convertToString = (value: number): string => value.toString();
 
-const addEuroSymbol = (price: number): string => {
-  return `€ ${price}`;
-};
+const addEuroSymbol = (price: number): string => `€ ${price}`;
 
-const checkIsNull = (value: string | null): boolean => {
-  return isNull(value);
-};
+const checkIsNull = (value: string | null): boolean => isNull(value);
 
 const getItemLayout = (itemHeight: number) => (_: any, index: number) => ({
   length: itemHeight,

@@ -20,7 +20,7 @@ import Utility from '../../common/Utility';
 import {
   ProductSliceStateTypes,
   ProductTypes,
-  navigationProps,
+  NavigationTypes,
 } from '../../types/commonTypes';
 import {styles} from './HomeScreen.style';
 
@@ -33,16 +33,15 @@ const carouselImages = [
   'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/6f207c8a-9b5d-412d-92f6-9cc7965a5fc3.jpg',
 ];
 
-export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
+export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
   const [page, setPage] = useState<number>(1); // Current page
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-
-  const dispatch = useDispatch();
 
   // Retrieve Products List, loading status and total products from the Redux store
   const {products, loadingStatus, totalProducts} = useSelector(
     (state: {product: ProductSliceStateTypes}) => state.product,
   );
+  const dispatch = useDispatch();
 
   const limit = 10; // Number of products per page
   const itemHeight = moderateScale(250); // Height of a product card
@@ -96,7 +95,7 @@ export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
   );
 
   // Render the list header with the product carousel and discount banner
-  const listHeader = () => {
+  const renderHeader = () => {
     return (
       <>
         <ProductCarousel
@@ -119,7 +118,7 @@ export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
   };
 
   // Render the list footer with a loading indicator or a message when there is no more data
-  const listFooter = () => {
+  const renderFooter = () => {
     if (totalProducts === products.length) {
       return (
         <Label
@@ -159,7 +158,7 @@ export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
           renderItem={renderProductItem}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={listHeader}
+          ListHeaderComponent={renderHeader}
           keyExtractor={(item: ProductTypes, index: number) =>
             Utility.convertToString(index)
           }
@@ -174,7 +173,7 @@ export const HomeScreen: React.FC<navigationProps> = ({navigation}) => {
           getItemLayout={Utility.getItemLayout(itemHeight)}
           onEndReached={loadMoreData} // Call `loadMoreData` when the end of the list is reached
           onEndReachedThreshold={0.1} // Load more data when 10% from the end is reached
-          ListFooterComponent={listFooter}
+          ListFooterComponent={renderFooter}
         />
       </View>
     </Gradient>

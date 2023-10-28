@@ -11,8 +11,7 @@ import {Gradient} from '../../common/components/LinearGradient';
 import {ProductCarousel} from '../../common/components/ProductCarousel/ProductCarousel';
 import Utility from '../../common/Utility';
 import {styles} from './ProductDetailsScreen.style';
-import {navigationProps} from '../../types/commonTypes';
-import {ProductTypes} from '../../types/commonTypes';
+import {NavigationTypes, RouteTypes} from '../../types/commonTypes';
 
 interface InfoRowTypes {
   value: string;
@@ -36,14 +35,7 @@ const InfoRow: React.FC<InfoRowTypes> = ({value, label}) => {
   );
 };
 
-//Exclude<T, U>:  Useful when you want to exclude specific values from another type.
-interface routeParams {
-  route: {
-    params: Exclude<ProductTypes, 'id'>;
-  };
-}
-
-const DetailsScreen: React.FC<navigationProps & routeParams> = ({
+const ProductDetailsScreen: React.FC<NavigationTypes & RouteTypes> = ({
   route: {params},
   navigation,
 }) => {
@@ -111,4 +103,4 @@ const DetailsScreen: React.FC<navigationProps & routeParams> = ({
   );
 };
 
-export default DetailsScreen;
+export default ProductDetailsScreen;

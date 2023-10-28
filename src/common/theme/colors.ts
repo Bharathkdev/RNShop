@@ -1,3 +1,4 @@
+// Common Color values used in the application
 export const colors = {
   dark: '#000000',
   light: '#ffffff',

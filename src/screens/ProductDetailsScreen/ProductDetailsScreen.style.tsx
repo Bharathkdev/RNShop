@@ -3,7 +3,7 @@ import {moderateScale} from 'react-native-size-matters';
 import {colors} from '../../common/theme/colors';
 import {commonTheme} from '../../common/theme';
 
-interface stylePropTypes {
+interface StylePropTypes {
   title: TextStyle;
   ratings: TextStyle;
   category: TextStyle;
@@ -17,7 +17,7 @@ interface stylePropTypes {
   backButtonContainer: ViewStyle;
 }
 
-export const styles = StyleSheet.create<stylePropTypes>({
+export const styles = StyleSheet.create<StylePropTypes>({
   title: {
     color: colors.light,
     paddingBottom: moderateScale(10),

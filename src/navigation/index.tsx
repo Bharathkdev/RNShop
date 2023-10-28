@@ -5,6 +5,7 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
+
 import {HomeScreen} from '../screens/HomeScreen/HomeScreen';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen/ProductDetailsScreen';
 import {SearchScreen} from '../screens/SearchScreen/SearchScreen';
@@ -39,12 +40,12 @@ const SearchStack: React.FC = () => {
 };
 
 //Pick<T, K>: Useful when you want to create a type with only a subset of properties from another type.
-export type TabBarProps = Pick<
+export type TabBarPropTypes = Pick<
   BottomTabBarProps,
   'state' | 'descriptors' | 'navigation'
 >;
 
-const tabBarComponent: React.FC<TabBarProps> = props => {
+const tabBarComponent: React.FC<TabBarPropTypes> = props => {
   return <TabBar {...props} />;
 };
 
