@@ -12,6 +12,7 @@ import {ProductCarousel} from '../../common/components/ProductCarousel/ProductCa
 import Utility from '../../common/Utility';
 import {styles} from './ProductDetailsScreen.style';
 import {NavigationTypes, RouteTypes} from '../../types/commonTypes';
+import {commonTheme} from '../../common/theme';
 
 interface InfoRowTypes {
   value: string;
@@ -22,13 +23,14 @@ interface InfoRowTypes {
 const InfoRow: React.FC<InfoRowTypes> = ({value, label}) => {
   return (
     <View style={styles.infoInnerContainer}>
-      <Label
-        title={label}
-        labelStyle={{...styles.infoRow, color: colors.base}}
-      />
+      <Label title={label} labelStyle={styles.infoRow} />
       <Label
         title={value}
-        labelStyle={{...styles.infoRow, color: colors.light}}
+        labelStyle={{
+          ...styles.infoRow,
+          color: colors.light,
+          fontSize: commonTheme.fontSizes.m,
+        }}
         capitalizeFirstLetter={true}
       />
     </View>

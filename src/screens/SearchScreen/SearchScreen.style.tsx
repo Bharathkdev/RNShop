@@ -22,6 +22,7 @@ export const styles = StyleSheet.create<StylePropTypes>({
     backgroundColor: colors.light,
     marginTop:
       Platform.OS === 'android' ? moderateScale(20) : moderateScale(10),
+    marginBottom: moderateScale(25),
     marginHorizontal:
       Platform.OS === 'android' ? moderateScale(12) : moderateScale(10),
     borderRadius: moderateScale(5),
@@ -42,7 +43,6 @@ export const styles = StyleSheet.create<StylePropTypes>({
   resultsHeaderStyle: {
     fontSize: commonTheme.fontSizes.xl,
     color: colors.light,
-    paddingTop: moderateScale(25),
     paddingBottom: moderateScale(10),
     paddingLeft: moderateScale(14),
   },

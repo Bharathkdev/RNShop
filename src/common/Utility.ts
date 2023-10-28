@@ -4,7 +4,7 @@ const capitalizeFirstLetter = (word: string): string =>
   word.charAt(0).toUpperCase() + word.slice(1);
 
 const truncateWord = (title: string): string =>
-  title.length > 18 ? title.substring(0, 18) + '...' : title;
+  title.length > 16 ? title.substring(0, 16) + '...' : title;
 
 const convertToString = (value: number): string => value.toString();
 

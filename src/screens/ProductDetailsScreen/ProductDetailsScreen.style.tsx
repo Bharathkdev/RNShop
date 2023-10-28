@@ -36,10 +36,7 @@ export const styles = StyleSheet.create<StylePropTypes>({
     flexDirection: 'row',
   },
   infoRowContainer: {
-    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: moderateScale(20),
     marginTop: moderateScale(10),
   },
   infoInnerContainer: {
@@ -49,13 +46,14 @@ export const styles = StyleSheet.create<StylePropTypes>({
     fontSize: commonTheme.fontSizes.l,
     textAlign: 'center',
     paddingTop: moderateScale(5),
+    color: colors.base,
   },
   productDescriptionContainer: {
     paddingVertical: moderateScale(30),
     paddingHorizontal: moderateScale(20),
   },
   productDescriptionText: {
-    fontSize: commonTheme.fontSizes.m,
+    fontSize: commonTheme.fontSizes.l,
     color: colors.light,
   },
   titleContainer: {

@@ -174,24 +174,24 @@ export const SearchScreen: React.FC<NavigationTypes> = ({navigation}) => {
           />
         </View>
       ) : (
-        <FlatList
-          data={results}
-          renderItem={renderSearchResultItem}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item: ProductTypes, index: number) =>
-            Utility.convertToString(index)
-          }
-          getItemLayout={Utility.getItemLayout(itemHeight)}
-          ListHeaderComponent={
-            <Label
-              title={handleResultsTitle()}
-              labelStyle={styles.resultsHeaderStyle}
-              capitalizeFirstLetter={true}
-            />
-          }
-          ListFooterComponent={<View style={styles.listFooter} />}
-        />
+        <>
+          <Label
+            title={handleResultsTitle()}
+            labelStyle={styles.resultsHeaderStyle}
+            capitalizeFirstLetter={true}
+          />
+          <FlatList
+            data={results}
+            renderItem={renderSearchResultItem}
+            numColumns={2}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item: ProductTypes, index: number) =>
+              Utility.convertToString(index)
+            }
+            getItemLayout={Utility.getItemLayout(itemHeight)}
+            ListFooterComponent={<View style={styles.listFooter} />}
+          />
+        </>
       )}
     </Gradient>
   );

@@ -22,8 +22,8 @@ export const styles = StyleSheet.create<StylePropTypes>({
   title: {
     fontSize: commonTheme.fontSizes.xl,
     color: colors.light,
+    marginTop: moderateScale(-15),
     marginBottom: moderateScale(25),
-    marginTop: moderateScale(10),
   },
   categoryContainer: {
     flexBasis: '30%',
