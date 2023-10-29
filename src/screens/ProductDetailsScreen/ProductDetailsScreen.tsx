@@ -48,6 +48,7 @@ const ProductDetailsScreen: React.FC<NavigationTypes & RouteTypes> = ({
     <Gradient>
       <TouchableOpacity
         style={styles.backButtonContainer}
+        activeOpacity={0.7}
         onPress={() => navigation.goBack()}>
         <Ionicons
           name="arrow-back"

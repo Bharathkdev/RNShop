@@ -49,6 +49,7 @@ export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
   useEffect(() => {
     /**
       * Fetch the initial page of data when the component mounts.
+
       * Pagination is utilized to limit the number of items fetched at once,
       improving initial screen rendering time by loading data in smaller chunks.
     **/
@@ -172,7 +173,7 @@ export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
             />
           }
           /**
-            getItemLayout precalculates the layout for each item, improving performance
+            * getItemLayout precalculates the layout for each item, improving performance
             by avoiding dynamic measurements during rendering.
           **/
           getItemLayout={Utility.getItemLayout(itemHeight)}

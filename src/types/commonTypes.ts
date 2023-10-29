@@ -27,10 +27,13 @@ export interface ProductSliceStateTypes {
   totalProducts: number;
 }
 
-/* An interface that extends another interface using the 'extends' keyword.
-In this case, it extends 'Array<ProductTypes>', which means it represents an array
-with elements of the 'ProductTypes' type and also includes 'products', 'total', 'limit',
-and 'skip' */
+/**
+ * An interface that extends another interface using the 'extends' keyword.
+
+ * In this case, it extends 'Array<ProductTypes>', which means it represents an array
+  with elements of the 'ProductTypes' type and also includes 'products', 'total', 'limit',
+  and 'skip'
+*/
 export interface ProductListTypes extends Array<ProductTypes> {
   products: ProductTypes[];
   total: number;

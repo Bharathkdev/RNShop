@@ -36,8 +36,8 @@ const categoryImages = {
 };
 
 /**
- *  Define a type 'CategoryImageKeys' that represents the valid keys that can be
-   used to index the 'categoryImages' object.
+ * Define a type 'CategoryImageKeys' that represents the valid keys that can be
+  used to index the 'categoryImages' object.
 */
 type CategoryImageKeys = keyof typeof categoryImages;
 
@@ -91,7 +91,7 @@ export const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}
   const renderFooter = () => (
     <View style={styles.footer}>
       {categories.length > 6 && (
-        <TouchableOpacity onPress={toggleShowMore} style={styles.button}>
+        <TouchableOpacity activeOpacity={0.9} onPress={toggleShowMore} style={styles.button}>
           <Label
             labelStyle={styles.buttonText}
             title={
@@ -119,8 +119,10 @@ export const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}
       />
 
       <FlatList
-        // Casting 'displayedCategories' to 'CategoryImageKeys[]' to ensure
-        // that it matches the expected data type for the FlatList's 'data' prop.
+        /**
+         * Casting 'displayedCategories' to 'CategoryImageKeys[]' to ensure
+          that it matches the expected data type for the FlatList's 'data' prop.
+        */
         data={displayedCategories as CategoryImageKeys[]}
         renderItem={renderItem}
         keyExtractor={(item: CategoryImageKeys, index: number) =>

@@ -19,8 +19,10 @@ export const TabBar: React.FC<TabBarPropTypes> = ({
     Animated.timing(animatedValue, {
       toValue: state.index,
       duration: 300,
-      // Using the native driver can significantly improve animation performance
-      // by offloading animations to the native side.
+      /**
+       * Using the native driver can significantly improve animation performance
+        by offloading animations to the native side.
+      */
       useNativeDriver: true,
     }).start();
   }, [state.index, animatedValue]);

@@ -45,7 +45,7 @@ const ProductCarousel: React.FC<ProductCarouselTypes> = ({
               {height: isDetailsScreen ? '100%' : moderateScale(328)},
             ]}
             resizeMode={resizeMode}
-            onLoadEnd={handleImageLoad} // Show loader until image is loaded
+            onLoadEnd={handleImageLoad}
           />
         </View>
       );
@@ -68,6 +68,7 @@ const ProductCarousel: React.FC<ProductCarouselTypes> = ({
         /**
           * react-native-snap-carousel adds this AnimatedComponent between the renderItem
           of the virtualized list and the actual item we provide.
+
           * So even if we memoize our item, this AnimatedComponent will still be re-rendered since
           react-native-snap-carousel doesn't memoize it (and it should), so if we have limited
           items in the carousel we can set useScrollView to true which will disableVirtualization.

@@ -46,17 +46,21 @@ function* fetchProductsListSaga(action: {
       offset,
     });
 
-    // Combine the existing products with the newly fetched products
-    // to keep the store updated.
+    /**
+     * Combine the existing products with the newly fetched products
+     to keep the store updated.
+    */
     const updatedProducts = existingProducts.concat(data.products);
 
     yield put(setProductsAction(updatedProducts));
     yield put(setTotalProductsAction(data.total));
   } catch (error: any) {
     const errorMessage = strings.ErrorHandling.productListError;
-    // Log the error message for debugging purposes. In a production environment,
-    // specialized error tracking tools like Sentry can be used to gather more
-    // detailed information about errors.
+    /**
+     * Log the error message for debugging purposes. In a production environment,
+     specialized error tracking tools like Sentry can be used to gather more
+     detailed information about errors.
+    */
     console.error('Error in fetchProductsListSaga:', error);
     Alert.alert('Alert', errorMessage);
   } finally {
