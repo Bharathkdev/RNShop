@@ -21,7 +21,7 @@ interface LabelPropTypes {
   capitalizeFirstLetter?: boolean;
 }
 
-export const Label: React.FC<LabelPropTypes> = ({
+const Label: React.FC<LabelPropTypes> = ({
   title,
   labelStyle,
   ellipsis,
@@ -41,3 +41,5 @@ export const Label: React.FC<LabelPropTypes> = ({
 
   return <Text style={[styles.labelStyle, labelStyle]}>{updatedTitle}</Text>;
 };
+
+export default React.memo(Label);

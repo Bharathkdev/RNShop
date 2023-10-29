@@ -14,7 +14,7 @@ const styles = StyleSheet.create<StylePropTypes>({
   },
 });
 
-export const Gradient: React.FC<ChildrenTypes> = ({children}) => {
+const Gradient: React.FC<ChildrenTypes> = ({children}) => {
   return (
     <LinearGradient
       colors={[colors.primary, colors.dark]}
@@ -25,3 +25,5 @@ export const Gradient: React.FC<ChildrenTypes> = ({children}) => {
     </LinearGradient>
   );
 };
+
+export default React.memo(Gradient);

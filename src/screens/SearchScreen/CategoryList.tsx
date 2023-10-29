@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {View, TouchableOpacity, FlatList} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 
 import {ProductSliceStateTypes} from '../../types/commonTypes';
-import {Label} from '../../common/components/Label';
+import Label from '../../common/components/Label';
 import {strings} from '../../common/strings';
 import {fetchCategoriesListAction} from '../../store/actions';
 import Utility from '../../common/Utility';
@@ -35,18 +35,20 @@ const categoryImages = {
   'lighting': require('../../../assets/images/lighting.png'),
 };
 
-// Define a type 'CategoryImageKeys' that represents the valid keys that can be
-// used to index the 'categoryImages' object.
+/**
+ *  Define a type 'CategoryImageKeys' that represents the valid keys that can be
+   used to index the 'categoryImages' object.
+*/
 type CategoryImageKeys = keyof typeof categoryImages;
 
 interface CategoryListPropTypes {
   onSelectCategory: (category: CategoryImageKeys) => void;
 }
 
-// Retrieve Categories List from the Redux store
-const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}) => {
+export const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}) => {
   const [showMore, setShowMore] = React.useState<boolean>(false);
 
+  // Retrieve Categories List from the Redux store
   const categories = useSelector(
     (state: {product: ProductSliceStateTypes}) => state.product?.categories,
   );
@@ -62,24 +64,27 @@ const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}) => {
     setShowMore(prevShowMore => !prevShowMore);
   };
 
-  const renderItem = ({item}: {item: CategoryImageKeys}) => (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      style={styles.categoryContainer}
-      onPress={() => {
-        onSelectCategory(item);
-      }}>
-      <FastImage
-        source={categoryImages[item]}
-        style={styles.imageStyle}
-        resizeMode={FastImage.resizeMode.contain}
-      />
-      <Label
-        labelStyle={styles.categoryText}
-        title={item}
-        capitalizeFirstLetter={true}
-      />
-    </TouchableOpacity>
+  const renderItem = useCallback(
+    ({item}: {item: CategoryImageKeys}) => (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.categoryContainer}
+        onPress={() => {
+          onSelectCategory(item);
+        }}>
+        <FastImage
+          source={categoryImages[item]}
+          style={styles.imageStyle}
+          resizeMode={FastImage.resizeMode.contain}
+        />
+        <Label
+          labelStyle={styles.categoryText}
+          title={item}
+          capitalizeFirstLetter={true}
+        />
+      </TouchableOpacity>
+    ),
+    [onSelectCategory],
   );
 
   // Render the "See More" button if there are more than 6 categories.
@@ -101,7 +106,10 @@ const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}) => {
   );
 
   // Determine the displayed categories based on the "showMore" state.
-  const displayedCategories = showMore ? categories : categories.slice(0, 6);
+  const displayedCategories = useMemo(
+    () => (showMore ? categories : categories.slice(0, 6)),
+    [showMore, categories],
+  );
 
   return (
     <View style={styles.container}>
@@ -125,5 +133,3 @@ const CategoryList: React.FC<CategoryListPropTypes> = ({onSelectCategory}) => {
     </View>
   );
 };
-
-export default CategoryList;

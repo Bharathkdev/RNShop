@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {Dimensions, View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {moderateScale} from 'react-native-size-matters';
@@ -14,7 +14,7 @@ interface ProductCarouselTypes {
   isDetailsScreen: boolean;
 }
 
-export const ProductCarousel: React.FC<ProductCarouselTypes> = ({
+const ProductCarousel: React.FC<ProductCarouselTypes> = ({
   carouselImages,
   resizeMode,
   isDetailsScreen,
@@ -26,28 +26,32 @@ export const ProductCarousel: React.FC<ProductCarouselTypes> = ({
   const windowWidth = Dimensions.get('window').width;
 
   // Hide loader when the carousel image is loaded
-  const handleImageLoad = () => {
+  const handleImageLoad = useCallback(() => {
     setIsLoading(false);
-  };
+  }, []);
 
-  const renderCarouselItem = ({item}: {item: string}) => {
-    return (
-      <View style={styles.carouselView}>
-        <FastImage
-          source={{
-            uri: item,
-            priority: FastImage.priority.high,
-          }}
-          style={[
-            styles.imageStyle,
-            {height: isDetailsScreen ? '100%' : moderateScale(328)},
-          ]}
-          resizeMode={resizeMode}
-          onLoadEnd={handleImageLoad} // Show loader until image is loaded
-        />
-      </View>
-    );
-  };
+  // Memoize the renderCarouselItem function to prevent unwanted re-creation
+  const renderCarouselItem = useCallback(
+    ({item}: {item: string}) => {
+      return (
+        <View style={styles.carouselView}>
+          <FastImage
+            source={{
+              uri: item,
+              priority: FastImage.priority.high,
+            }}
+            style={[
+              styles.imageStyle,
+              {height: isDetailsScreen ? '100%' : moderateScale(328)},
+            ]}
+            resizeMode={resizeMode}
+            onLoadEnd={handleImageLoad} // Show loader until image is loaded
+          />
+        </View>
+      );
+    },
+    [handleImageLoad, isDetailsScreen, resizeMode],
+  );
 
   return (
     <View style={styles.container}>
@@ -61,6 +65,14 @@ export const ProductCarousel: React.FC<ProductCarouselTypes> = ({
         renderItem={renderCarouselItem}
         sliderWidth={windowWidth}
         itemWidth={windowWidth}
+        /**
+          * react-native-snap-carousel adds this AnimatedComponent between the renderItem
+          of the virtualized list and the actual item we provide.
+          * So even if we memoize our item, this AnimatedComponent will still be re-rendered since
+          react-native-snap-carousel doesn't memoize it (and it should), so if we have limited
+          items in the carousel we can set useScrollView to true which will disableVirtualization.
+        **/
+        useScrollView={true}
         autoplay={isDetailsScreen ? false : true}
         autoplayInterval={3000}
         loop={true}
@@ -86,3 +98,6 @@ export const ProductCarousel: React.FC<ProductCarouselTypes> = ({
     </View>
   );
 };
+
+// Memoize the entire component with React.memo to prevent unneccesary re-renders when props haven't changed.
+export default React.memo(ProductCarousel);

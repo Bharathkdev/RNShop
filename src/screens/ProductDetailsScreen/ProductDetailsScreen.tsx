@@ -5,10 +5,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import StarRating from './StarRating';
 import {colors} from '../../common/theme/colors';
-import {Label} from '../../common/components/Label';
+import Label from '../../common/components/Label';
 import {strings} from '../../common/strings';
-import {Gradient} from '../../common/components/LinearGradient';
-import {ProductCarousel} from '../../common/components/ProductCarousel/ProductCarousel';
+import Gradient from '../../common/components/LinearGradient';
+import ProductCarousel from '../../common/components/ProductCarousel/ProductCarousel';
 import Utility from '../../common/Utility';
 import {styles} from './ProductDetailsScreen.style';
 import {NavigationTypes, RouteTypes} from '../../types/commonTypes';
@@ -105,4 +105,4 @@ const ProductDetailsScreen: React.FC<NavigationTypes & RouteTypes> = ({
   );
 };
 
-export default ProductDetailsScreen;
+export default React.memo(ProductDetailsScreen);

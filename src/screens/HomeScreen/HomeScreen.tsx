@@ -7,12 +7,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {fetchProductsListAction} from '../../store/actions';
 import {setProductsAction} from '../../store/reducer';
-import {ProductCard} from '../../common/components/ProductCard/ProductCard';
-import {Label} from '../../common/components/Label';
-import {Gradient} from '../../common/components/LinearGradient';
+import ProductCard from '../../common/components/ProductCard/ProductCard';
+import Label from '../../common/components/Label';
+import Gradient from '../../common/components/LinearGradient';
 import {HomeLoader} from '../../common/components/HomeLoader';
 import {LoadingIndicator} from '../../common/components/LoadingIndicator';
-import {ProductCarousel} from '../../common/components/ProductCarousel/ProductCarousel';
+import ProductCarousel from '../../common/components/ProductCarousel/ProductCarousel';
 import {colors} from '../../common/theme/colors';
 import {strings} from '../../common/strings';
 import Utility from '../../common/Utility';
@@ -43,16 +43,20 @@ export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
   );
   const dispatch = useDispatch();
 
-  const limit = 10; // Number of products per page
+  const limit = 20; // Number of products per page
   const itemHeight = moderateScale(250); // Height of a product card
 
   useEffect(() => {
-    // Fetch the initial page of data when the component mounts
+    /**
+      * Fetch the initial page of data when the component mounts.
+      * Pagination is utilized to limit the number of items fetched at once,
+      improving initial screen rendering time by loading data in smaller chunks.
+    **/
     dispatch(fetchProductsListAction({limit, skip: 0}));
   }, [dispatch]);
 
   // Load more data when the user scrolls to the end of the list
-  const loadMoreData = () => {
+  const loadMoreData = useCallback(() => {
     try {
       const skip = page * limit; // Calculate the skip value for the next page
 
@@ -60,10 +64,9 @@ export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
       dispatch(fetchProductsListAction({limit, skip}));
       setPage(page + 1);
     } catch (error) {
-      // Handle any errors that might occur during the fetch
       console.error('Error loading more data:', error);
     }
-  };
+  }, [dispatch, page, limit]);
 
   // Refresh the data when the user pulls down
   const handleRefresh = () => {
@@ -150,7 +153,7 @@ export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
 
   return (
     <Gradient>
-      {loadingStatus.home && products.length < 10 && <HomeLoader />}
+      {loadingStatus.home && products.length < 20 && <HomeLoader />}
       <View style={styles.logoStyle}>{renderLogo()}</View>
       <View style={styles.container}>
         <FlatList
@@ -168,9 +171,14 @@ export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {
               onRefresh={handleRefresh}
             />
           }
-          // getItemLayout precalculates the layout for each item, improving performance
-          // by avoiding dynamic measurements during rendering.
+          /**
+            getItemLayout precalculates the layout for each item, improving performance
+            by avoiding dynamic measurements during rendering.
+          **/
           getItemLayout={Utility.getItemLayout(itemHeight)}
+          removeClippedSubviews
+          initialNumToRender={20}
+          maxToRenderPerBatch={20}
           onEndReached={loadMoreData} // Call `loadMoreData` when the end of the list is reached
           onEndReachedThreshold={0.1} // Load more data when 10% from the end is reached
           ListFooterComponent={renderFooter}

@@ -11,11 +11,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {moderateScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Gradient} from '../../common/components/LinearGradient';
+import Gradient from '../../common/components/LinearGradient';
 import {LoadingIndicator} from '../../common/components/LoadingIndicator';
-import {ProductCard} from '../../common/components/ProductCard/ProductCard';
-import {Label} from '../../common/components/Label';
-import CategoryList from './CategoryList';
+import ProductCard from '../../common/components/ProductCard/ProductCard';
+import Label from '../../common/components/Label';
+import {CategoryList} from './CategoryList';
 import {colors} from '../../common/theme/colors';
 import {strings} from '../../common/strings';
 import {
@@ -117,18 +117,21 @@ export const SearchScreen: React.FC<NavigationTypes> = ({navigation}) => {
     }
   };
 
-  const renderSearchResultItem = ({item}: {item: ProductTypes}) => {
-    return (
-      <ProductCard
-        imageUri={item.thumbnail}
-        productName={item.title}
-        productPrice={item.price}
-        onPress={() => {
-          navigation.navigate('Details', {...item});
-        }}
-      />
-    );
-  };
+  const renderSearchResultItem = useCallback(
+    ({item}: {item: ProductTypes}) => {
+      return (
+        <ProductCard
+          imageUri={item.thumbnail}
+          productName={item.title}
+          productPrice={item.price}
+          onPress={() => {
+            navigation.navigate('Details', {...item});
+          }}
+        />
+      );
+    },
+    [navigation],
+  );
 
   const handleChangeText = (text: string) => {
     if (selectedCategory) {
@@ -189,6 +192,7 @@ export const SearchScreen: React.FC<NavigationTypes> = ({navigation}) => {
               Utility.convertToString(index)
             }
             getItemLayout={Utility.getItemLayout(itemHeight)}
+            removeClippedSubviews
             ListFooterComponent={<View style={styles.listFooter} />}
           />
         </>

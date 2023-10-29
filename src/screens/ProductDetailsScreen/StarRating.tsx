@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {View, StyleSheet, ViewStyle} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {moderateScale} from 'react-native-size-matters';
@@ -20,11 +20,11 @@ interface StarRatingPropTypes {
 
 const StarRating: React.FC<StarRatingPropTypes> = ({rating}) => {
   // Calculate the number of full stars and check for a half star
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 2 !== 0;
+  const fullStars = useMemo(() => Math.floor(rating), [rating]);
+  const hasHalfStar = useMemo(() => rating % 2 !== 0, [rating]);
 
-  const renderIcon = (key: string, iconName: string) => {
-    return (
+  const renderIcon = useMemo(() => {
+    return (key: string, iconName: string) => (
       <Ionicons
         key={key}
         name={iconName}
@@ -32,19 +32,22 @@ const StarRating: React.FC<StarRatingPropTypes> = ({rating}) => {
         color={colors.base}
       />
     );
-  };
+  }, []);
 
   // Function to render individual stars
-  const renderStar = (index: number) => {
-    const key = `star-${index}`;
-    if (index < fullStars) {
-      return renderIcon(key, 'star');
-    } else if (hasHalfStar && index === fullStars) {
-      return renderIcon(key, 'star-half');
-    } else {
-      return renderIcon(key, 'star-outline');
-    }
-  };
+  const renderStar = useCallback(
+    (index: number) => {
+      const key = `star-${index}`;
+      if (index < fullStars) {
+        return renderIcon(key, 'star');
+      } else if (hasHalfStar && index === fullStars) {
+        return renderIcon(key, 'star-half');
+      } else {
+        return renderIcon(key, 'star-outline');
+      }
+    },
+    [fullStars, hasHalfStar, renderIcon],
+  );
 
   return (
     <View style={styles.container}>
@@ -55,4 +58,4 @@ const StarRating: React.FC<StarRatingPropTypes> = ({rating}) => {
   );
 };
 
-export default StarRating;
+export default React.memo(StarRating);

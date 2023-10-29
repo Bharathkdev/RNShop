@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, View, ViewStyle} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Label} from '../Label';
+import Label from '../Label';
 import Utility from '../../Utility';
 import {styles} from './ProductCard.style';
 
@@ -13,7 +13,7 @@ interface ProductCardTypes {
   cardStyle?: ViewStyle;
 }
 
-export const ProductCard: React.FC<ProductCardTypes> = ({
+const ProductCard: React.FC<ProductCardTypes> = ({
   imageUri,
   productName,
   productPrice,
@@ -47,3 +47,5 @@ export const ProductCard: React.FC<ProductCardTypes> = ({
     </TouchableOpacity>
   );
 };
+
+export default React.memo(ProductCard);

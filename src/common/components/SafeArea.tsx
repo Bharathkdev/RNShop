@@ -25,7 +25,7 @@ const styles = StyleSheet.create<StylePropTypes>({
   },
 });
 
-export const SafeArea: React.FC<ChildrenTypes> = ({children}) => {
+const SafeArea: React.FC<ChildrenTypes> = ({children}) => {
   return (
     <>
       {Platform.OS === 'ios' ? (
@@ -44,3 +44,5 @@ export const SafeArea: React.FC<ChildrenTypes> = ({children}) => {
     </>
   );
 };
+
+export default React.memo(SafeArea);

@@ -3,7 +3,7 @@ import {View, Animated, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {colors} from '../common/theme/colors';
-import {Label} from '../common/components/Label';
+import Label from '../common/components/Label';
 import {TabBarPropTypes} from './index';
 import {styles} from './TabBar.style';
 
