@@ -26,11 +26,11 @@ import {styles} from './HomeScreen.style';
 
 // Image URLs for the carousel
 const carouselImages = [
-  'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/f6e98d0a-8121-4f3f-8179-1b7edf4809c4.jpeg',
-  'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/c5858733-fef6-41c4-8b68-56ef5664483e.jpg',
   'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/9077b67a-0cb3-401f-ba95-85abd639e013.jpg',
-  'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/fcc47153-338b-4c70-b80b-08a74dd11a82.jpeg',
   'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/6f207c8a-9b5d-412d-92f6-9cc7965a5fc3.jpg',
+  'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/c5858733-fef6-41c4-8b68-56ef5664483e.jpg',
+  'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/fcc47153-338b-4c70-b80b-08a74dd11a82.jpeg',
+  'https://m.media-amazon.com/images/S/al-eu-726f4d26-7fdb/f6e98d0a-8121-4f3f-8179-1b7edf4809c4.jpeg',
 ];
 
 export const HomeScreen: React.FC<NavigationTypes> = ({navigation}) => {

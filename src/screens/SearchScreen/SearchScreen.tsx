@@ -154,6 +154,7 @@ export const SearchScreen: React.FC<NavigationTypes> = ({navigation}) => {
           selectionColor={colors.base}
           onChangeText={handleChangeText}
           placeholder={strings.SearchScreen.placeHolder}
+          placeholderTextColor={colors.primary}
           onFocus={handleSearchFocus}
         />
 
