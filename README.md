@@ -88,3 +88,11 @@ yarn ios
 ```
 npx react-native run-ios
 ```
+## Troubleshooting
+
+If you face any error while installing pods using pod install make sure your pod version is up-to-date. Run the following command:
+
+```
+cd ios/
+pod install --repo-update
+```
