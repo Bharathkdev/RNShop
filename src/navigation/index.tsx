@@ -22,6 +22,7 @@ const HomeStack: React.FC = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
+      {/* @ts-ignore */}
       <Stack.Screen name="Details" component={ProductDetailsScreen} />
     </Stack.Navigator>
   );
@@ -34,6 +35,7 @@ const SearchStack: React.FC = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Search" component={SearchScreen} />
+      {/* @ts-ignore */}
       <Stack.Screen name="Details" component={ProductDetailsScreen} />
     </Stack.Navigator>
   );

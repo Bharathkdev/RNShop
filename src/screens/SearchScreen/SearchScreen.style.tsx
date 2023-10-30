@@ -33,6 +33,7 @@ export const styles = StyleSheet.create<StylePropTypes>({
     paddingHorizontal: moderateScale(16),
     fontSize: commonTheme.fontSizes.l,
     fontFamily: commonTheme.fonts.medium,
+    color: colors.dark,
   },
   searchBarCloseIcon: {
     marginRight: moderateScale(5),

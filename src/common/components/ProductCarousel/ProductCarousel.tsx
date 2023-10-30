@@ -42,6 +42,7 @@ const ProductCarousel: React.FC<ProductCarouselTypes> = ({
             }}
             style={[
               styles.imageStyle,
+              // eslint-disable-next-line react-native/no-inline-styles
               {height: isDetailsScreen ? '100%' : moderateScale(328)},
             ]}
             resizeMode={resizeMode}
@@ -84,6 +85,7 @@ const ProductCarousel: React.FC<ProductCarouselTypes> = ({
         enableMomentum={true}
         removeClippedSubviews={false}
         decelerationRate={0.9}
+        //@ts-ignore
         height={isDetailsScreen ? windowWidth / 1.5 : windowWidth / 2}
         lockScrollWhileSnapping={true}
         loopClonesPerSide={carouselImages.length}
@@ -100,5 +102,8 @@ const ProductCarousel: React.FC<ProductCarouselTypes> = ({
   );
 };
 
-// Memoize the entire component with React.memo to prevent unneccesary re-renders when props haven't changed.
+/**
+ * Memoize the entire component with React.memo to prevent unneccesary
+  re-renders when props haven't changed.
+*/
 export default React.memo(ProductCarousel);
